@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static BinarySearchTreeRecursive.BinarySearchTree;
-using static System.Console;
+﻿using static System.Console;
 
 namespace BinarySearchTreeRecursive
 {
@@ -23,73 +17,63 @@ namespace BinarySearchTreeRecursive
 
             for (int i = 0; i < teamNames.Length; i++)
             {
-                BinarySearchTree.Insert(teamNames[i], teamLocations[i]);
-                WriteLine($"{teamLocations[i]} {teamNames[i]} has beenn added");
+                
+                t.Insert(teamNames[i], teamLocations[i]);
+                WriteLine($"--{teamNames[i].ToUpper(), -15} ({teamLocations[i].ToUpper(), 5}) has beenn added");
             }
-
-            //UNCOMMENT THE LINES TO START WITH A PREPOPULATED TREE
-            //"keysInInsertionOrder" allows you to see how the shape of the tree is different
-            //when the order of insertion changes.
-            //List<int> keysInInsertionOrder = new List<int> { 50, 72, 17, 12, 23, 54, 76, 9, 14, 19 };
-            //for (int i = 0; i < keysInInsertionOrder.Count; i++)
-            //{
-            //    t.Insert(keysInInsertionOrder[i]);
-            //}
-            //t.Visualize();
-            //WriteLine("\nKeys were entered in this order: \n" + String.Join(" ", keysInInsertionOrder));
-            //WriteLine("\nContent of binary tree in ascending sequence: ");
-            //t.Traverse();
-            //WriteLine();
-            //END START WITH A PREPOPULATED TREE
-
-
-            //UNCOMMENT THIS STATEMENT TO START WITH AN EMPTY TREE
-            ////"keysInInsertionOrder" allows you to see how the shape of the tree is different
-            ////when the order of insertion changes.
-            //List<int> keysInInsertionOrder = new List<int>();
-            //END START WITH AN EMPTY TREE
-
-
 
             do
             {
-                Write("\nSelect (I)nsert, (D)elete, (T)raverse, (F)ind, (O)rder of input, or (Q)uit: ");
+                Write("\nSelect (I)nsert, (D)elete, (T)raverse, (F)ind, or (Q)uit: ");
                 switch (ReadLine().ToUpper())
                 {
                     case "I":
                         WriteLine("INSERT A NEW TEAM");
                         WriteLine("----------------------");
-                        Write("\n- - - Team name: ");
+                        Write("\n- - - TEAM NAME: ");
                         keyInput = ReadLine();
-                        Write("\n- - - Team city: ");
+                        Write("\n- - - TEAM CITY: ");
                         valueInput = ReadLine();
                         t.Insert(keyInput, valueInput);
-                        //keysInInsertionOrder.Add(input);
-                        t.Visualize();
+                        WriteLine($"{keyInput} successfully added.");
                         break;
                     case "D":
-                        Write("\nTeam to delete: ");
+                        Write("\nTEAM TO DELETE: ");
                         input = ReadLine();
-                        t.Delete(input);
-                        t.Visualize();
+                        string delete = t.Find(input);
+                        if (delete != "not found")
+                        {
+                            string locationDeleted = t.Find(input);
+                            t.Delete(input);
+                            WriteLine($"The {input} from {locationDeleted} are no more!");
+                        }
+                        else WriteLine($"{input} was not found.");
+                        
                         break;
                     case "T":
-                        WriteLine("\nContent of binary tree in ascending sequence: ");
+                        WriteLine("\nCONTENT OF BINARY TREE IN ASCENDING SEQUENCE: ");
+                        WriteLine("-----------------------------------------------------------");
                         t.Traverse();
                         WriteLine();
                         break;
                     case "F":
-                        Write("\nTeam to find: ");
+                        WriteLine("FIND A TEAM");
+                        WriteLine("----------------------");
+                        Write("\nTEAM NAME: ");
                         input = ReadLine();
-                        string message = t.Find(input) ? "found" : "not found";
-                        WriteLine($"{input} was {message}");
+                        string message = t.Find(input);
+                        if (message == "not found")
+                        {
+                            WriteLine($"{input} was not found!");
+                        }
+                        else WriteLine($"{input} are from {message}");                        
                         break;
                     case "Q":
                         WriteLine("\nOkey dokey.  All done.");
                         done = true;
                         break;
                     default:
-                        WriteLine("Invalid command.");
+                        WriteLine("INVALID COMMAND: ");
                         break;
                 }
             } while (!done);

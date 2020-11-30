@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BinarySearchTreeRecursive.BinarySearchTree;
 using static System.Console;
 
 namespace BinarySearchTreeRecursive
@@ -16,6 +17,15 @@ namespace BinarySearchTreeRecursive
             string valueInput;
             string input;
             bool done = false;
+
+            string[] teamNames = LoadTeamTable();
+            string[] teamLocations = LoadTeamLocation();
+
+            for (int i = 0; i < teamNames.Length; i++)
+            {
+                BinarySearchTree.Insert(teamNames[i], teamLocations[i]);
+                WriteLine($"{teamLocations[i]} {teamNames[i]} has beenn added");
+            }
 
             //UNCOMMENT THE LINES TO START WITH A PREPOPULATED TREE
             //"keysInInsertionOrder" allows you to see how the shape of the tree is different
@@ -85,6 +95,30 @@ namespace BinarySearchTreeRecursive
             } while (!done);
 
             ReadKey();
+        }
+
+        private static string[] LoadTeamTable()
+        {
+            return new string[32] {"Cardinals","Falcons","Ravens","Bills",
+                "Panthers","Bears","Bengals","Browns",
+                "Cowboys","Broncos","Lions","Packers",
+                "Texans","Colts","Jaguars","Chiefs",
+                "Chargers","Rams","Dolphins","Vikings",
+                "Patriots","Saints","Giants","Jets",
+                "Raiders","Eagles","Steelers","49ers",
+                "Seahawks","Buccaneers","Titans","Football Team"};
+        }
+
+        private static string[] LoadTeamLocation()
+        {
+            return new string[32] {"Arizona","Atlanta","Baltimore","Buffalo",
+            "Carolina","Chicago","Cincinnati","Cleveland",
+            "Dallas","Denver","Detroit","Green Bay",
+            "Houston","Indianapolis","Jacksonville","Kansas City",
+            "Los Angeles","Los Angeles", "Miami","Minnesota",
+            "New England","New Orleans","New York","New York",
+            "Oakland","Philadelphia","Pittsburgh","San Francisco",
+            "Seattle","Tampa Bay","Tennessee", "Washington"};
         }
     }
 }

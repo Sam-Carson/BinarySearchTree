@@ -56,38 +56,31 @@ namespace BinarySearchTreeRecursive
                         t.Insert(keyInput, valueInput);
                         //keysInInsertionOrder.Add(input);
                         t.Visualize();
-
                         break;
                     case "D":
                         Write("\nTeam to delete: ");
                         input = ReadLine();
-                            t.Delete(input);
-                            t.Visualize();
-                        
+                        t.Delete(input);
+                        t.Visualize();
                         break;
-                    //case "T":
-                    //    WriteLine("\nContent of binary tree in ascending sequence: ");
-                    //    t.Traverse();
-                    //    WriteLine();
-                    //    break;
+                    case "T":
+                        WriteLine("\nContent of binary tree in ascending sequence: ");
+                        t.Traverse();
+                        WriteLine();
+                        break;
                     case "F":
                         Write("\nTeam to find: ");
                         input = ReadLine();
-                        
-                            string message = t.Find(input) ? "found" : "not found";
-                            WriteLine($"{input} was {message}");
-                        
+                        string message = t.Find(input) ? "found" : "not found";
+                        WriteLine($"{input} was {message}");
                         break;
-                        //case "O":
-                        //    WriteLine("\nKeys were entered in this order: \n" + String.Join(" ", keysInInsertionOrder));
-                        //    break;
-                        //case "Q":
-                        //    WriteLine("\nOkey dokey.  All done.");
-                        //    done = true;
-                        //    break;
-                        //default:
-                        //    WriteLine("Invalid command.");
-                        //    break;
+                    case "Q":
+                        WriteLine("\nOkey dokey.  All done.");
+                        done = true;
+                        break;
+                    default:
+                        WriteLine("Invalid command.");
+                        break;
                 }
             } while (!done);
 
